@@ -1,10 +1,15 @@
-import CoffeeList from './components/CoffeeList';
+import { useState } from "react";
+import Header from "./components/Header";
+import OrderList from "./components/OrderList";
 
 function App() {
   return (
-    <div className="App">
-      <CoffeeList />
-    </div>
+    <>
+      <Header />
+      <div className="row">
+        <OrderList />
+      </div>
+    </>
   );
 }
 
