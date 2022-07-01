@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 export default function Order({ order, products, setOrders }) {
   const [loading, setLoading] = useState(false);
-  const [currentProduct, setCurrenProduct] = useState({});
+  const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
     products.length &&
-      setCurrenProduct(
+      setCurrentProduct(
         products.find((product) => product.Stueckliste === order.Stueckliste)
       );
   }, [products]);
