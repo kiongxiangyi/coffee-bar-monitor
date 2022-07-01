@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Header() {
+export default function Header2() {
   return (
     <header className="row2 block">
       <div>
-        <h1>Bestellungen</h1>
+        <h1>Zur Abholung</h1>
       </div>
     </header>
   );

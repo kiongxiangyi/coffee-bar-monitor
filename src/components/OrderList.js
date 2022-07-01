@@ -6,15 +6,17 @@ const OrderList = ({ onStart, products }) => {
 
   useEffect(() => {
     const getOrders = () => {
-      console.log("UPDATING...");
+      //console.log("UPDATING...");
       fetch(`${process.env.REACT_APP_API}/orders`) //fetch orders data from backend
         .then((res) => res.json())
         .then((results) => setOrders(results))
         .catch((err) => console.log(err));
     };
     getOrders();
+    console.log(orders);
+    //run every 5 second
     const id = setInterval(getOrders, 5000);
-    return () => clearInterval(id);
+    return () => clearInterval(id); //??
   }, []);
 
   return (
@@ -28,7 +30,7 @@ const OrderList = ({ onStart, products }) => {
             order={order}
             onStart={onStart}
             products={products}
-            setOrders={setOrders}
+            setOrders={setOrders} //??
           />
         )
       )}
