@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { DateTime } from "luxon";
 
 export default function Order({ order, products, setOrders }) {
   const [loading, setLoading] = useState(false); //for start button
@@ -46,7 +45,13 @@ export default function Order({ order, products, setOrders }) {
     <div className="card">
       <h3>{order.Stueckliste}</h3>
       <h3>{order.AngelegtVon}</h3>
-      <h3>{order.AngelegtAm}</h3>
+      {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
+      <h3>
+        {new Date(order.AngelegtAm).toLocaleString(
+          "de-DE",
+          DateTime.DATETIME_SHORT //Luxon DateTime
+        )}
+      </h3>
       <img
         className="small"
         src={currentProduct.Dokument1}
@@ -60,9 +65,9 @@ export default function Order({ order, products, setOrders }) {
         ) : order.Wechselstatus === "WWS02" ? (
           "Status: In Process"
         ) : order.Wechselstatus === "WWS03" ? (
-          (order.Wechselstatus = "WWS06")
+          "Status: Finished"
         ) : order.Wechselstatus === "WWS06" ? (
-          "Status: for pickup"
+          "Status: For pickup"
         ) : (
           "Status: undefined"
         )}
