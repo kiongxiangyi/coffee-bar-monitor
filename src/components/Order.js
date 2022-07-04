@@ -11,7 +11,7 @@ export default function Order({ order, products, setOrders }) {
       setCurrentProduct(
         products.find((product) => product.Stueckliste === order.Stueckliste)
       );
-  }, [products]);
+  }, [order.Stueckliste, products]);
 
   const onStart = async (order) => {
     try {

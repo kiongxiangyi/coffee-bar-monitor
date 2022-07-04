@@ -4,7 +4,8 @@
 }
 
 img.small {
-  max-height: 10rem;
+  height: 10rem;
+  width: 8rem;
   margin-bottom: 0.2rem;
 }
 
@@ -15,7 +16,7 @@ img.small {
   box-shadow: 0px 5px 5px #b2bec3;
   text-align: center;
   margin: 0.5em 0.5em;
-}
+  flex: 1 1 0px}
 
 header {
   color: black;

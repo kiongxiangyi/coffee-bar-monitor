@@ -5,9 +5,9 @@ import OrderList from "./components/OrderList";
 function App() {
   const [products, setProducts] = useState([]); //create state, initial value empty array
   const [orders, setOrders] = useState([]);
-  console.log(orders);
+
   useEffect(() => {
-    fetch("http://localhost:5000/drinks") //fetch data from backend
+    fetch(`${process.env.REACT_APP_API}/drinks`) //fetch data from backend
       .then((res) => res.json())
       .then((results) => setProducts(results)) //set data from database as products array
       .catch((err) => console.log(err));
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      <Header text="Bestellungen/In Process" />
+      <Header text="Bestellungen" />
       <div className="row">
         <div className="container">
           <OrderList
@@ -39,18 +39,7 @@ function App() {
           />
         </div>
       </div>
-      <Header text="Fertig" />
-      <div className="row">
-        <div className="container">
-          <OrderList
-            products={products}
-            orders={orders}
-            setOrders={setOrders}
-            filter={["WWS03"]}
-          />
-        </div>
-      </div>
-      <Header text="Abholung" />
+      <Header text="Zur Abholung" />
       <div className="row">
         <div className="container">
           <OrderList
