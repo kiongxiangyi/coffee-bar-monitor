@@ -22,21 +22,19 @@ function App() {
     };
     getOrders();
     //run every 5 second
-    const id = setInterval(getOrders, 5000);
+    const id = setInterval(getOrders, 2000);
     return () => clearInterval(id); //??
   }, []);
 
   return (
     <>
       <Header text="Bestellungen" />
-
       <OrderList
         products={products}
         orders={orders}
         setOrders={setOrders}
         filter={["WWS01", "WWS02"]}
       />
-
       <Header text="Zur Abholung" />
       <OrderList
         products={products}

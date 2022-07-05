@@ -15,16 +15,19 @@ export default function Order({ order, products, setOrders }) {
 
   const onStart = async (order) => {
     try {
-      const res = await fetch(`http://localhost:5000/orders/${order.ID}`, {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+      const res = await fetch(
+        `${process.env.REACT_APP_API}/orders/${order.ID}`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
 
-        //write WSS02 status to database
-        body: JSON.stringify({ status: "WWS02" }),
-      });
+          //write WSS02 status to database
+          body: JSON.stringify({ status: "WWS02" }),
+        }
+      );
       //?
       const data = await res.json(); //data is current order of the ID
       setOrders((prev) =>
