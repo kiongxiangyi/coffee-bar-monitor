@@ -29,27 +29,21 @@ function App() {
   return (
     <>
       <Header text="Bestellungen" />
-      <div className="row">
-        <div className="container">
-          <OrderList
-            products={products}
-            orders={orders}
-            setOrders={setOrders}
-            filter={["WWS01", "WWS02"]}
-          />
-        </div>
-      </div>
+
+      <OrderList
+        products={products}
+        orders={orders}
+        setOrders={setOrders}
+        filter={["WWS01", "WWS02"]}
+      />
+
       <Header text="Zur Abholung" />
-      <div className="row">
-        <div className="container">
-          <OrderList
-            products={products}
-            orders={orders}
-            setOrders={setOrders}
-            filter={["WWS06"]}
-          />
-        </div>
-      </div>
+      <OrderList
+        products={products}
+        orders={orders}
+        setOrders={setOrders}
+        filter={["WWS06"]}
+      />
     </>
   );
 }

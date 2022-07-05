@@ -42,35 +42,43 @@ export default function Order({ order, products, setOrders }) {
   };
 
   return (
-    <div className="card">
-      <h3>{order.Stueckliste}</h3>
-      <h3>{order.AngelegtVon}</h3>
-      {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
-      <h3>
-        {new Date(order.AngelegtAm).toLocaleString(
-          "de-DE",
-          DateTime.DATETIME_SHORT //Luxon DateTime
-        )}
-      </h3>
-      <img
-        className="small"
-        src={currentProduct.Dokument1}
-        alt={products.Stueckliste}
-      ></img>
-      <div>
-        {order.Wechselstatus === "WWS01" ? (
-          <button onClick={handleClick} disabled={loading}>
-            Start
-          </button>
-        ) : order.Wechselstatus === "WWS02" ? (
-          "Status: In Process"
-        ) : order.Wechselstatus === "WWS03" ? (
-          "Status: Finished"
-        ) : order.Wechselstatus === "WWS06" ? (
-          "Status: For pickup"
-        ) : (
-          "Status: undefined"
-        )}
+    <div className="col-6 col-xs-6 col-md-3 col-lg-2">
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">{order.Stueckliste}</h3>
+          <p className="card-text">{order.AngelegtVon}</p>
+          {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
+          <p className="card-text">
+            {new Date(order.AngelegtAm).toLocaleString(
+              "de-DE",
+              DateTime.DATETIME_SHORT //Luxon DateTime
+            )}
+          </p>
+          <img
+            className="card-img-top"
+            src={currentProduct.Dokument1}
+            alt={products.Stueckliste}
+          ></img>
+          <div>
+            {order.Wechselstatus === "WWS01" ? (
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={handleClick}
+                disabled={loading}
+              >
+                Start
+              </button>
+            ) : order.Wechselstatus === "WWS02" ? (
+              "Status: In Process"
+            ) : order.Wechselstatus === "WWS03" ? (
+              "Status: Finished"
+            ) : order.Wechselstatus === "WWS06" ? (
+              "Status: For pickup"
+            ) : (
+              "Status: undefined"
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
