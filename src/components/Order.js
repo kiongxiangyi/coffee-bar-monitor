@@ -44,6 +44,36 @@ export default function Order({ order, products, setOrders }) {
     //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
   };
 
+  //change status to WWS05 if picked up
+  const onPickUp = async (order) => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API}/orders/${order.ID}`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({ status: "WWS05" }),
+        }
+      );
+      const data = await res.json(); //data is current order of the ID
+      setOrders((prev) =>
+        prev.map((order) => (order.ID === data.ID ? data : order))
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleClickPickUp = async () => {
+    setLoading(true);
+    await onPickUp(order);
+    //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
+  };
+
   return (
     <div className="col-6 col-xs-6 col-md-3 col-lg-2">
       <div className="card">
@@ -72,13 +102,21 @@ export default function Order({ order, products, setOrders }) {
                 Start
               </button>
             ) : order.Wechselstatus === "WWS02" ? (
-              "Status: In Process"
+              "Status: In Bearbeitung"
             ) : order.Wechselstatus === "WWS03" ? (
-              "Status: Finished"
+              "Status: Erledigt"
             ) : order.Wechselstatus === "WWS06" ? (
-              "Status: For pickup"
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={handleClickPickUp}
+                disabled={loading}
+              >
+                Zur Abholung
+              </button>
+            ) : order.Wechselstatus === "WWS05" ? (
+              "Status: Abgeholt"
             ) : (
-              "Status: undefined"
+              "Status: undefiniert"
             )}
           </div>
         </div>
