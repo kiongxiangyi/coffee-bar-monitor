@@ -80,6 +80,7 @@ export default function Order({ order, products, setOrders }) {
         <div className="card-body">
           <h3 className="card-title">{order.Stueckliste}</h3>
           <p className="card-text">{order.AngelegtVon}</p>
+          <p className="card-text">Tischnummer: {order.Bemerkung}</p>
           {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
           <p className="card-text">
             {new Date(order.AngelegtAm).toLocaleString(
