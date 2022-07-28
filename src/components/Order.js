@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DateTime } from "luxon";
+import i18n from "../i18n";
 
 export default function Order({ order, products, setOrders }) {
   const [loading, setLoading] = useState(false); //for start button
@@ -80,7 +81,9 @@ export default function Order({ order, products, setOrders }) {
         <div className="card-body">
           <h3 className="card-title">{order.Stueckliste}</h3>
           <p className="card-text">{order.AngelegtVon}</p>
-          <p className="card-text">Tischnummer: {order.Bemerkung}</p>
+          <p className="card-text">
+            {i18n.t("tableNumber")}: {order.Bemerkung}
+          </p>
           {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
           <p className="card-text">
             {new Date(order.AngelegtAm).toLocaleString(
@@ -100,7 +103,7 @@ export default function Order({ order, products, setOrders }) {
                 onClick={handleClick}
                 disabled={loading}
               >
-                Start
+                {i18n.t("start")}
               </button>
             ) : order.Wechselstatus === "WWS02" ? (
               "Status: In Bearbeitung"
@@ -112,7 +115,7 @@ export default function Order({ order, products, setOrders }) {
                 onClick={handleClickPickUp}
                 disabled={loading}
               >
-                Zur Abholung
+                {i18n.t("pickup")}
               </button>
             ) : order.Wechselstatus === "WWS05" ? (
               "Status: Abgeholt"

@@ -1,6 +1,10 @@
-import { useState, useEffect } from "react"; //import the useState hook from React
+import React, { useState, useEffect } from "react"; //import the useState hook from React
 import Header from "./components/Header";
 import OrderList from "./components/OrderList";
+import i18n from "./i18n";
+import Loading from "./components/Loading";
+import LocaleContext from "./LocaleContext";
+import Navigation from "./components/Navigation";
 
 function App() {
   const [products, setProducts] = useState([]); //create state, initial value empty array
@@ -26,22 +30,30 @@ function App() {
     return () => clearInterval(id); //??
   }, []);
 
+  const [locale, setLocale] = useState(i18n.language);
+  i18n.on("languageChanged", (lng) => setLocale(i18n.language));
+
   return (
     <>
-      <Header text="Bestellungen" />
-      <OrderList
-        products={products}
-        orders={orders}
-        setOrders={setOrders}
-        filter={["WWS01", "WWS02"]}
-      />
-      <Header text="Zur Abholung" />
-      <OrderList
-        products={products}
-        orders={orders}
-        setOrders={setOrders}
-        filter={["WWS06"]}
-      />
+      <LocaleContext.Provider value={{ locale, setLocale }}>
+        <React.Suspense fallback={<Loading />}>
+          <Navigation />
+          <Header text={i18n.t("orders")} />
+          <OrderList
+            products={products}
+            orders={orders}
+            setOrders={setOrders}
+            filter={["WWS01", "WWS02"]}
+          />
+          <Header text={i18n.t("ready")} />
+          <OrderList
+            products={products}
+            orders={orders}
+            setOrders={setOrders}
+            filter={["WWS06"]}
+          />
+        </React.Suspense>
+      </LocaleContext.Provider>
     </>
   );
 }
