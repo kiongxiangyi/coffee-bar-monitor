@@ -5,10 +5,13 @@ import i18n from "./i18n";
 import Loading from "./components/Loading";
 import LocaleContext from "./LocaleContext";
 import Navigation from "./components/Navigation";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [products, setProducts] = useState([]); //create state, initial value empty array
   const [orders, setOrders] = useState([]);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API}/drinks`) //fetch data from backend
@@ -38,14 +41,14 @@ function App() {
       <LocaleContext.Provider value={{ locale, setLocale }}>
         <React.Suspense fallback={<Loading />}>
           <Navigation />
-          <Header text={i18n.t("orders")} />
+          <Header text={t("orders")} />
           <OrderList
             products={products}
             orders={orders}
             setOrders={setOrders}
             filter={["WWS01", "WWS02"]}
           />
-          <Header text={i18n.t("ready")} />
+          <Header text={t("ready")} />
           <OrderList
             products={products}
             orders={orders}

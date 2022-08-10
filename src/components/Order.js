@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { DateTime } from "luxon";
-import i18n from "../i18n";
+import { useTranslation } from "react-i18next";
 
 export default function Order({ order, products, setOrders }) {
   const [loading, setLoading] = useState(false); //for start button
   const [currentProduct, setCurrentProduct] = useState({}); //for product picture of an order
+
+  const { t } = useTranslation();
 
   //use picture from products table and show in orders webpage
   useEffect(() => {
@@ -82,7 +84,7 @@ export default function Order({ order, products, setOrders }) {
           <h3 className="card-title">{order.Stueckliste}</h3>
           <p className="card-text">{order.AngelegtVon}</p>
           <p className="card-text">
-            {i18n.t("tableNumber")}: {order.Bemerkung}
+            {t("tableNumber")}: {order.Bemerkung}
           </p>
           {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
           <p className="card-text">
@@ -103,7 +105,7 @@ export default function Order({ order, products, setOrders }) {
                 onClick={handleClick}
                 disabled={loading}
               >
-                {i18n.t("start")}
+                {t("start")}
               </button>
             ) : order.Wechselstatus === "WWS02" ? (
               "Status: In Bearbeitung"
@@ -115,7 +117,7 @@ export default function Order({ order, products, setOrders }) {
                 onClick={handleClickPickUp}
                 disabled={loading}
               >
-                {i18n.t("pickup")}
+                {t("pickup")}
               </button>
             ) : order.Wechselstatus === "WWS05" ? (
               "Status: Abgeholt"
