@@ -5,5 +5,6 @@
   "start": "Start",
   "ready": "Ready for pickup",
   "pickup": "Pick up",
-  "tableNumber": "Table Number"
+  "tableNumber": "Table Number",
+  "orderNumber": "Order Number"
 }

@@ -5,6 +5,7 @@
   "start": "Starten",
   "ready": "Zur Abholung",
   "pickup": "Abholen",
-  "tableNumber": "Tischnummer"
+  "tableNumber": "Tischnummer",
+  "orderNumber": "Bestellnummer"
 
 }
