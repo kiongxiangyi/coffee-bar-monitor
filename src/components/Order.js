@@ -80,7 +80,7 @@ export default function Order({ order, products, setOrders }) {
   return (
     <div className="col-6 col-xs-6 col-md-3 col-lg-2">
       <div className="card">
-        <div className="card-body">
+        <div className="card-body background">
           <h3 className="card-title">{order.Stueckliste}</h3>
           <p className="card-text">
             {t("orderNumber")}: {order.ID}
@@ -96,26 +96,28 @@ export default function Order({ order, products, setOrders }) {
             )}
           </p>
           <img
-            className="card-img-top"
+            className="card-img-top background"
             src={currentProduct.Dokument1}
             alt={products.Stueckliste}
           ></img>
-          <div>
+          <div className="background">
             {order.Wechselstatus === "WWS01" ? (
               <button
-                className="btn btn-primary btn-lg"
+                className="btn btn-lg"
                 onClick={handleClick}
                 disabled={loading}
               >
                 {t("start")}
               </button>
             ) : order.Wechselstatus === "WWS02" ? (
-              "Status: In Bearbeitung"
+              <button disabled className="btn btn-lg disabled">
+                {"In Bearbeitung"}
+              </button>
             ) : order.Wechselstatus === "WWS03" ? (
               "Status: Erledigt"
             ) : order.Wechselstatus === "WWS06" ? (
               <button
-                className="btn btn-primary btn-lg"
+                className="btn btn-lg"
                 onClick={handleClickPickUp}
                 disabled={loading}
               >

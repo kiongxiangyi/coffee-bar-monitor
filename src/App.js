@@ -6,6 +6,7 @@ import Loading from "./components/Loading";
 import LocaleContext from "./LocaleContext";
 import Navigation from "./components/Navigation";
 import { useTranslation } from "react-i18next";
+import Logo from "./components/Logo";
 
 function App() {
   const [products, setProducts] = useState([]); //create state, initial value empty array
@@ -40,7 +41,8 @@ function App() {
     <>
       <LocaleContext.Provider value={{ locale, setLocale }}>
         <React.Suspense fallback={<Loading />}>
-          <Navigation />
+          <Logo />
+          {/* <Navigation /> */}
           <Header text={t("orders")} />
           <OrderList
             products={products}
