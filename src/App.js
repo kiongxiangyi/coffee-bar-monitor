@@ -4,7 +4,6 @@ import OrderList from "./components/OrderList";
 import i18n from "./i18n";
 import Loading from "./components/Loading";
 import LocaleContext from "./LocaleContext";
-import Navigation from "./components/Navigation";
 import { useTranslation } from "react-i18next";
 import Logo from "./components/Logo";
 
@@ -42,7 +41,6 @@ function App() {
       <LocaleContext.Provider value={{ locale, setLocale }}>
         <React.Suspense fallback={<Loading />}>
           <Logo />
-          {/* <Navigation /> */}
           <Header text={t("orders")} />
           <OrderList
             products={products}
