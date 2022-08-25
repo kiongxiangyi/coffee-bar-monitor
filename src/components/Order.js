@@ -83,7 +83,7 @@ export default function Order({ order, products, setOrders }) {
         <div className="card-body background">
           <h3 className="card-title">{order.Stueckliste}</h3>
           <p className="card-text">
-            {t("orderNumber")}: {order.ID}
+            {t("orderNumber")}: {order.Auftragsnummer}
           </p>
           <p className="card-text">
             {t("tableNumber")}: {order.Bemerkung}
