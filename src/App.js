@@ -48,13 +48,13 @@ function App() {
             setOrders={setOrders}
             filter={["WWS01", "WWS02"]}
           />
-          <Header text={t("ready")} />
+          {/* <Header text={t("ready")} />
           <OrderList
             products={products}
             orders={orders}
             setOrders={setOrders}
             filter={["WWS06"]}
-          />
+          /> */}
         </React.Suspense>
       </LocaleContext.Provider>
     </>
