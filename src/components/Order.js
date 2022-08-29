@@ -46,44 +46,14 @@ export default function Order({ order, products, setOrders }) {
     await onStart(order);
     //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
   };
-
-  //change status to WWS05 if picked up
-  const onPickUp = async (order) => {
-    try {
-      const res = await fetch(
-        `${process.env.REACT_APP_API}/orders/${order.ID}`,
-        {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({ status: "WWS05" }),
-        }
-      );
-      const data = await res.json(); //data is current order of the ID
-      setOrders((prev) =>
-        prev.map((order) => (order.ID === data.ID ? data : order))
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleClickPickUp = async () => {
-    setLoading(true);
-    await onPickUp(order);
-    //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
-  };
-
+  
   return (
     <div className="col-6 col-xs-6 col-md-3 col-lg-2">
       <div className="card">
         <div className="card-body background">
           <h3 className="card-title">{order.Stueckliste}</h3>
           <p className="card-text">
-            {t("orderNumber")}: {order.ID}
+            {t("orderNumber")}: {order.Auftragsnummer}
           </p>
           <p className="card-text">
             {t("tableNumber")}: {order.Bemerkung}
@@ -116,13 +86,7 @@ export default function Order({ order, products, setOrders }) {
             ) : order.Wechselstatus === "WWS03" ? (
               "Status: Erledigt"
             ) : order.Wechselstatus === "WWS06" ? (
-              <button
-                className="btn btn-lg"
-                onClick={handleClickPickUp}
-                disabled={loading}
-              >
-                {t("pickup")}
-              </button>
+              "Status: Zur Abholung"
             ) : order.Wechselstatus === "WWS05" ? (
               "Status: Abgeholt"
             ) : (

@@ -28,7 +28,8 @@ function App() {
         .catch((err) => console.log(err));
     };
     getOrders();
-    //run every 5 second
+    
+    //run every 2 second
     const id = setInterval(getOrders, 2000);
     return () => clearInterval(id); //??
   }, []);
@@ -41,13 +42,6 @@ function App() {
       <LocaleContext.Provider value={{ locale, setLocale }}>
         <React.Suspense fallback={<Loading />}>
           <Logo />
-          <Header text={t("orders")} />
-          <OrderList
-            products={products}
-            orders={orders}
-            setOrders={setOrders}
-            filter={["WWS01", "WWS02"]}
-          />
           <Header text={t("ready")} />
           <OrderList
             products={products}
