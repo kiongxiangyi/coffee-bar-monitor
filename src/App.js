@@ -42,13 +42,15 @@ function App() {
       <LocaleContext.Provider value={{ locale, setLocale }}>
         <React.Suspense fallback={<Loading />}>
           <Logo />
+
           <Header text={t("ready")} />
+
           <OrderList
             products={products}
             orders={orders}
             setOrders={setOrders}
             filter={["WWS06"]}
-          />
+          /> */}
         </React.Suspense>
       </LocaleContext.Provider>
     </>
