@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   background-color: #e7e7e7;
-  font-family: 'Helvetica Neue LT W1G 400', sans-serif; /* https://www.cdnfonts.com/helvetica-neue-lt-w1g.font */
+  font-family: "Helvetica Neue LT W1G 400", sans-serif; /* https://www.cdnfonts.com/helvetica-neue-lt-w1g.font */
 }
 
 .background {
@@ -39,9 +39,6 @@ p {
   border-radius: 0.3rem;
 }
 
-
-
-
 .card-img-top img {
   width: 100px;
   height: 100px;
@@ -53,7 +50,6 @@ p {
   background-color: #ffe100;
 }
 
-
 h1 {
   font-size: 1.5rem;
   text-align: left;
@@ -61,15 +57,15 @@ h1 {
   padding-left: 0.2rem;
   margin-top: 0.2rem;
   background-color: #ffe100;
-  font-family: 'Helvetica Neue LT W1G', sans-serif;
+  font-family: "Helvetica Neue LT W1G", sans-serif;
 }
 
 h3 {
   font-size: 1rem;
   text-align: center;
   background-color: #ffe100;
-  
-  font-family: 'Helvetica Neue LT W1G', sans-serif;
+
+  font-family: "Helvetica Neue LT W1G", sans-serif;
 }
 
 .card {
@@ -81,16 +77,30 @@ h3 {
 }
 
 .btn {
-  margin-top: 0.4rem;
   font-size: 1rem;
-  background-color: #999999; 
+  background-color: #999999;
   color: white;
+  margin: auto 0.3rem;
 }
 
 .btn:hover {
-  background-color:#e7e7e7;
+  background-color: #e7e7e7;
   transition: 0.7s;
 }
+
+.card-title {
+  height: 40px;
+}
+
+/* IPAD */
+@media only screen and (max-width: 800px) {
+
+  .card-title {
+  height: auto;
+  }
+
+}
+
 
 /* img.small {
   height: 10rem;

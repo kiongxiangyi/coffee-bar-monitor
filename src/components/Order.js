@@ -102,13 +102,22 @@ export default function Order({ order, products, setOrders }) {
           ></img>
           <div className="background">
             {order.Wechselstatus === "WWS01" ? (
+              <>
               <button
                 className="btn btn-lg"
                 onClick={handleClick}
                 disabled={loading}
               >
-                {t("start")}
+                {t("start-left")}
               </button>
+              <button
+              className="btn btn-lg"
+              onClick={handleClick}
+              disabled={loading}
+            >
+              {t("start-right")}
+            </button>
+            </>
             ) : order.Wechselstatus === "WWS02" ? (
               <button disabled className="btn btn-lg disabled">
                 {"In Bearbeitung"}
