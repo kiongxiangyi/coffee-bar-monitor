@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 export default function Order({ order, products, setOrders }) {
   const [loading, setLoading] = useState(false); //for start button
   const [currentProduct, setCurrentProduct] = useState({}); //for product picture of an order
+  const [leftRight, setLeftRight] = useState();
 
   const { t } = useTranslation();
 
@@ -28,7 +29,10 @@ export default function Order({ order, products, setOrders }) {
           },
 
           //write WSS02 status to database
-          body: JSON.stringify({ status: "WWS02" }),
+          body: JSON.stringify({
+            status: "WWS02",
+            coffeeMakerDirection: leftRight,
+          }),
         }
       );
       //?
@@ -41,7 +45,15 @@ export default function Order({ order, products, setOrders }) {
     }
   };
 
-  const handleClick = async () => {
+  const handleClickLeft = async () => {
+    setLeftRight("l");
+    setLoading(true);
+    await onStart(order);
+    //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
+  };
+
+  const handleClickRight = async () => {
+    setLeftRight("r");
     setLoading(true);
     await onStart(order);
     //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
@@ -97,27 +109,27 @@ export default function Order({ order, products, setOrders }) {
           </p>
           <img
             className="card-img-top background"
-            src={currentProduct.Dokument1}
-            alt={products.Stueckliste}
+            src={`/Kaffee_Bilder/${currentProduct.Stueckliste}.png`}
+            alt={currentProduct.Stueckliste}
           ></img>
           <div className="background">
             {order.Wechselstatus === "WWS01" ? (
               <>
-              <button
-                className="btn btn-lg"
-                onClick={handleClick}
-                disabled={loading}
-              >
-                {t("start-left")}
-              </button>
-              <button
-              className="btn btn-lg"
-              onClick={handleClick}
-              disabled={loading}
-            >
-              {t("start-right")}
-            </button>
-            </>
+                <button
+                  className="btn btn-lg"
+                  onClick={handleClickLeft}
+                  disabled={loading}
+                >
+                  {t("start-left")}
+                </button>
+                <button
+                  className="btn btn-lg"
+                  onClick={handleClickRight}
+                  disabled={loading}
+                >
+                  {t("start-right")}
+                </button>
+              </>
             ) : order.Wechselstatus === "WWS02" ? (
               <button disabled className="btn btn-lg disabled">
                 {"In Bearbeitung"}
