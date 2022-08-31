@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 export default function Order({ order, products, setOrders }) {
   const [loading, setLoading] = useState(false); //for start button
   const [currentProduct, setCurrentProduct] = useState({}); //for product picture of an order
-  const [leftRight, setLeftRight] = useState();
 
   const { t } = useTranslation();
 
@@ -16,6 +15,20 @@ export default function Order({ order, products, setOrders }) {
         products.find((product) => product.Stueckliste === order.Stueckliste)
       );
   }, [order.Stueckliste, products]);
+
+  const handleClickLeft = async () => {
+    currentProduct.Operation = "l";
+    setLoading(true);
+    await onStart(order);
+    //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
+  };
+
+  const handleClickRight = async () => {
+    currentProduct.Operation = "r";
+    setLoading(true);
+    await onStart(order);
+    //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
+  };
 
   const onStart = async (order) => {
     try {
@@ -28,10 +41,10 @@ export default function Order({ order, products, setOrders }) {
             "Content-Type": "application/json",
           },
 
-          //write WSS02 status to database
+          //write WSS02 status and operation for coffee left/right to database
           body: JSON.stringify({
             status: "WWS02",
-            coffeeMakerDirection: leftRight,
+            coffeeMakerDirection: currentProduct.Operation,
           }),
         }
       );
@@ -43,20 +56,6 @@ export default function Order({ order, products, setOrders }) {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleClickLeft = async () => {
-    setLeftRight("l");
-    setLoading(true);
-    await onStart(order);
-    //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
-  };
-
-  const handleClickRight = async () => {
-    setLeftRight("r");
-    setLoading(true);
-    await onStart(order);
-    //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
   };
 
   //change status to WWS05 if picked up
