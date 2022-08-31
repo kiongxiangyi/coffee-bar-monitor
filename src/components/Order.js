@@ -46,7 +46,7 @@ export default function Order({ order, products, setOrders }) {
     await onStart(order);
     //setTimeout(() => setLoading(false), 3000); //deactivate button for 3 seconds
   };
-  
+
   return (
     <div className="col-6 col-xs-6 col-md-3 col-lg-2">
       <div className="card">
@@ -67,7 +67,7 @@ export default function Order({ order, products, setOrders }) {
           </p>
           <img
             className="card-img-top background"
-            src={currentProduct.Dokument1}
+            src={`/Kaffee_Bilder/${currentProduct.Stueckliste}.png`}
             alt={products.Stueckliste}
           ></img>
           <div className="background">
