@@ -108,7 +108,7 @@ export default function Order({ order, products, setOrders }) {
           </p>
           <img
             className="card-img-top background"
-            src={`/Kaffee_Bilder/${currentProduct.Stueckliste}.png`}
+            src={currentProduct.Bemerkung}
             alt={currentProduct.Stueckliste}
           ></img>
           <div className="background">

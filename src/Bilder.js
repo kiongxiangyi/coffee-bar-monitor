@@ -1,0 +1,1 @@
+const Bilder = [Cappuccino, Doppelter Espresso, Espresso Macchiato, Espresso, Heiße Milch, Kaffee, Latte Macchiato, Tee - Heißes Wasser];
