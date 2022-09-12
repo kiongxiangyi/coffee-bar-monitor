@@ -52,19 +52,24 @@ export default function Order({ order, products, setOrders }) {
       <div className="card">
         <div className="card-body background">
           <h3 className="card-title">{order.Stueckliste}</h3>
-          <p className="card-text">
-            {t("orderNumber")}: {order.Auftragsnummer}
-          </p>
-          <p className="card-text">
-            {t("tableNumber")}: {order.Bemerkung}
-          </p>
-          {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
-          <p className="card-text">
-            {new Date(order.AngelegtAm).toLocaleString(
-              "de-DE",
-              DateTime.DATETIME_SHORT //Luxon DateTime
-            )}
-          </p>
+          <div className="card-height">
+            <p className="card-text">
+              {t("orderNumber")}: {order.Auftragsnummer}
+            </p>
+
+            <p className="card-text">
+              {order.Bemerkung === ""
+                ? ""
+                : `${t("tableNumber")}: ${order.Bemerkung}`}
+            </p>
+            {/* <h3>{new Date(order.AngelegtAm).toLocaleDateString("de-DE")}</h3> */}
+            <p className="card-text">
+              {new Date(order.AngelegtAm).toLocaleString(
+                "de-DE",
+                DateTime.DATETIME_SHORT //Luxon DateTime
+              )}
+            </p>
+          </div>
           <img
             className="card-img-top background"
             src={currentProduct.Bemerkung}
